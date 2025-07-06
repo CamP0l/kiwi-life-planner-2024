@@ -27,38 +27,56 @@ const Index = () => {
   const [activeTab, setActiveTab] = useState("dashboard");
 
   const tabs = [
-    { id: "dashboard", label: "Dashboard", icon: Home, component: Dashboard },
-    { id: "planner", label: "Weekly Planner", icon: Calendar, component: WeeklyPlanner },
-    { id: "youtube", label: "YouTube Tracker", icon: Video, component: YouTubeTracker },
-    { id: "financial", label: "Financial Goals", icon: DollarSign, component: FinancialGoals },
-    { id: "sidehustle", label: "Side Hustles", icon: Briefcase, component: SideHustleBoard },
-    { id: "reminders", label: "Reminders", icon: Bell, component: RemindersMotivation },
+    { id: "dashboard", label: "Summary", icon: Home, component: Dashboard },
+    { id: "planner", label: "Planner", icon: Calendar, component: WeeklyPlanner },
+    { id: "youtube", label: "Content", icon: Video, component: YouTubeTracker },
+    { id: "financial", label: "Finance", icon: DollarSign, component: FinancialGoals },
+    { id: "sidehustle", label: "Work", icon: Briefcase, component: SideHustleBoard },
+    { id: "reminders", label: "Goals", icon: Bell, component: RemindersMotivation },
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
-      <div className="container mx-auto px-4 py-6">
-        <header className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">Kiwi Life Planner</h1>
-          <p className="text-gray-600">Your complete system for life, finances, and creative goals</p>
-        </header>
+    <div className="min-h-screen bg-gray-50">
+      {/* Header */}
+      <div className="bg-white border-b border-gray-100 sticky top-0 z-40">
+        <div className="container mx-auto px-4 py-4">
+          <div className="text-center">
+            <h1 className="text-2xl font-semibold text-gray-900">Kiwi Life</h1>
+            <p className="text-sm text-gray-500 mt-1">Your complete life system</p>
+          </div>
+        </div>
+      </div>
 
+      <div className="container mx-auto px-4 pb-20">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-3 lg:grid-cols-6 mb-6">
-            {tabs.map((tab) => (
-              <TabsTrigger key={tab.id} value={tab.id} className="flex items-center gap-2">
-                <tab.icon className="h-4 w-4" />
-                <span className="hidden sm:inline">{tab.label}</span>
-              </TabsTrigger>
-            ))}
-          </TabsList>
-
           {tabs.map((tab) => (
-            <TabsContent key={tab.id} value={tab.id}>
+            <TabsContent key={tab.id} value={tab.id} className="mt-6">
               <tab.component />
             </TabsContent>
           ))}
         </Tabs>
+      </div>
+
+      {/* Bottom Navigation - iOS Style */}
+      <div className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-200">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-6 py-2">
+            {tabs.map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`flex flex-col items-center justify-center py-2 px-1 transition-colors ${
+                  activeTab === tab.id 
+                    ? 'text-blue-600' 
+                    : 'text-gray-500'
+                }`}
+              >
+                <tab.icon className="h-5 w-5 mb-1" />
+                <span className="text-xs font-medium leading-none">{tab.label}</span>
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
