@@ -37,16 +37,6 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-white border-b border-gray-100 sticky top-0 z-40">
-        <div className="container mx-auto px-4 py-4">
-          <div className="text-center">
-            <h1 className="text-2xl font-semibold text-gray-900">Kiwi Life</h1>
-            <p className="text-sm text-gray-500 mt-1">Your complete life system</p>
-          </div>
-        </div>
-      </div>
-
       <div className="container mx-auto px-4 pb-20">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           {tabs.map((tab) => (
@@ -67,7 +57,7 @@ const Index = () => {
                 onClick={() => setActiveTab(tab.id)}
                 className={`flex flex-col items-center justify-center py-2 px-1 transition-colors ${
                   activeTab === tab.id 
-                    ? 'text-blue-600' 
+                    ? 'text-purple-600' 
                     : 'text-gray-500'
                 }`}
               >
