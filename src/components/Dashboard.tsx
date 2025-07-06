@@ -1,16 +1,16 @@
-
 import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { CheckCircle2, Circle, Target, TrendingUp, DollarSign, Users, Heart, Calendar } from "lucide-react";
+import { WeatherWidget } from "@/components/WeatherWidget";
 
 export function Dashboard() {
   const [checkedItems, setCheckedItems] = useState<boolean[]>([false, false, false, false, false]);
 
   const priorities = [
     "Film this week's 10 Cent NZ Challenge episode",
-    "Update YouTube content calendar",
+    "Update YouTube content calendar", 
     "Track weekly expenses and income",
     "Apply for 2-3 casual job positions",
     "Review and adjust financial goals"
@@ -42,10 +42,13 @@ export function Dashboard() {
 
   return (
     <div className="space-y-6">
-      {/* Health-style greeting */}
-      <div className="text-left mb-8">
-        <h2 className="text-3xl font-bold text-gray-900 mb-2">{getGreeting()}</h2>
-        <p className="text-lg text-gray-600">Here's your daily summary</p>
+      {/* Health-style greeting with weather */}
+      <div className="flex items-start justify-between mb-8">
+        <div>
+          <h2 className="text-3xl font-bold text-gray-900 mb-2">{getGreeting()}</h2>
+          <p className="text-lg text-gray-600">Here's your daily summary</p>
+        </div>
+        <WeatherWidget />
       </div>
 
       {/* Main Progress Cards - Apple Health Style */}
